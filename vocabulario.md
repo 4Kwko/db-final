@@ -12,12 +12,12 @@ Quando uso o MySQL Workbench pra criar uma tabela ou consultar dados com `SELECT
 São regras que a gente define nas tabelas pra garantir que os dados sigam uma lógica. Por exemplo: `NOT NULL` obriga a preencher, `PRIMARY KEY` identifica cada linha, `FOREIGN KEY` liga uma tabela com outra. Isso evita erro e bagunça nos dados.
 
 **Exemplo prático:**
-sql
-CREATE TABLE cliente (
-  id INT PRIMARY KEY,
-  nome VARCHAR(100) NOT NULL,
-  email VARCHAR(100) UNIQUE
-);
+
+CREATE TABLE cliente ( 
+  id INT PRIMARY KEY, 
+  nome VARCHAR(100) NOT NULL, 
+  email VARCHAR(100) UNIQUE 
+); 
 
 ## Modelo Relacional
 É o modelo mais usado hoje. Nele os dados ficam organizados em tabelas com linhas e colunas. Cada linha é um registro (ou tupla) e cada coluna é um atributo.
@@ -42,11 +42,11 @@ Agora sim vira código real. A gente usa SQL pra criar as tabelas e definir os d
 
 Exemplo prático:
 
-CREATE TABLE veiculo (
-  id INT PRIMARY KEY,
-  placa VARCHAR(10) NOT NULL,
-  data_manutencao DATE
-);
+CREATE TABLE veiculo ( 
+  id INT PRIMARY KEY, 
+  placa VARCHAR(10) NOT NULL, 
+  data_manutencao DATE 
+); 
 
 ## Linguagem SQL
 É a linguagem usada pra conversar com o banco. Com ela são cradas tabelas, inserção de dados, consultas, atualizações e deleções.
@@ -54,23 +54,28 @@ CREATE TABLE veiculo (
 ## Data Definition Language (DDL)
 São os comandos SQL que servem pra criar ou alterar a estrutura do banco.
 
-SELECT nome FROM cliente WHERE uf_cnh = 'RS';
+SELECT nome FROM cliente WHERE uf_cnh = 'RS'; 
 
 
 Exemplo prático:
 
-CREATE TABLE escritorio (
-  id INT PRIMARY KEY,
-  nome VARCHAR(100)
-);
+CREATE TABLE escritorio ( 
+  id INT PRIMARY KEY, 
+  nome VARCHAR(100) 
+); 
 
 
 ## Data Manipulation Language (DML)
 São os comandos que manipulam os dados dentro das tabelas.
 
+## Exemplo prático:
+
+INSERT INTO escritorio (nome) VALUES ('Escritório Central'); 
+UPDATE cliente SET nome = 'João Vítor' WHERE id = 1; 
+DELETE FROM veiculo WHERE placa = 'IXT0003'; 
+
+Boas Práticas em Modelagem de Banco de Dados
+Aqui é onde entra o cuidado: dar nomes claros pras tabelas e colunas, evitar repetir informações (normalizar), usar chaves corretamente e deixar tudo bem organizado.
+
 Exemplo prático:
-
-INSERT INTO escritorio (nome) VALUES ('Escritório Central');
-UPDATE cliente SET nome = 'João Vítor' WHERE id = 1;
-DELETE FROM veiculo WHERE placa = 'IXT0003';
-
+Ao invés de colocar a cidade dentro da tabela cliente, crio uma tabela cidade separada e relaciono com o cliente por id_cidade. Isso evita repetir “Santa Maria” mil vezes.
